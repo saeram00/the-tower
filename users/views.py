@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.generic.detail import DetailView
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth import login, authenticate, logout
@@ -21,17 +21,18 @@ def register(request):
             email = info.get('email')
             passwd1 = info.get('password1')
             passwd2 = info.get('password2')
-            messages.succes(request, f"Usuario {username} creado con éxito.")
-            data = {
-                'username': username,
-                'email': email,
-                'password1': passwd1,
-                'password2': passwd2,
-            }
-            complete_form = RegisterForm(data)
-            if complete_form.is_valid():
-                complete_form.save()
-                return redirect('Blog-Index')
+            messages.success(request, f"Usuario {username} creado con éxito.")
+            # data = {
+            #     'username': username,
+            #     'email': email,
+            #     'password1': passwd1,
+            #     'password2': passwd2,
+            # }
+            # complete_form = RegisterForm(data)
+            # if complete_form.is_valid():
+            #     complete_form.save()
+            #     return redirect('Reg-Success')
+            return redirect('Reg-Success')
     else:
         reg_form = RegisterForm()
 
@@ -39,6 +40,10 @@ def register(request):
         'form': reg_form,
     }
     return render(request, 'users/register.html', register_context)
+
+class RegisterSuccess(TemplateView):
+
+    template_name = 'users/reg_success.html'
 
 # class UserList(ListView):
 
