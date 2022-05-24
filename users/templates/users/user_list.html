@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+        <h1>Usuarios Registrados</h1>
+        <ul class="card">
+          {% for user in bloguser_list %}
+          <ul class="container col col-5">
+            <li>Nombre de usuario: {{ user.nombre_usuario }}</li>
+            <li>Correo electrónico: {{ user.email }}</li>
+            <li>Se unió el: {{ user.fecha_registro }}</li>
+          </ul>
+          {% endfor %}
+        </ul>
+{% endblock content %}

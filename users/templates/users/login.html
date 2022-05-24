@@ -1,11 +1,22 @@
 {% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-        <body>
-          <h1>Ingreso:</h1>
+        <h1>Acceso</h1>
+        <div class="container container-md mb-5 col col-5">
           <form action="" method="POST">
             {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">Iniciar sesión</button>
+            <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Ingrese sus datos:</legend>
+              {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Ingresar</button>
+            </div>
           </form>
-        </body>
+          <div class="pt-3">
+            <small class="text-muted">
+              ¿No tienes una cuenta aún? <a class="ml-2" href="{% url 'Register' %}">Regístrate aquí</a>
+            </small>
+          </div>
+        </div>
 {% endblock content %}

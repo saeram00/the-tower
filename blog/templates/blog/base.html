@@ -25,21 +25,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Post-List'%}">Repostitorio</a></li>
+            {% if not user.is_authenticated %}
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Register'%}">Regístrate</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Login</a></li>
             <!-- Dropdown should only be visible if user is logged in -->
+            {% else %}
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuario: {{ user }}</a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Crear Post</a></li>
                 <li><a class="dropdown-item" href="#">Tus Post</a></li>
                 <li><a class="dropdown-item" href="#">Chat</a></li>
                 <li><a class="dropdown-item" href="#">Perfil</a></li>
                 <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar Sesión</a></li>
               </ul>
             </li>
             <!-- Dropdown end -->
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -49,7 +52,7 @@
       <div class="text-center mt-5">
         {% if messages %}
           {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
+            <div class="container-sm col-5 alert alert-{{ message.tags }}">
               {{ message }}
             </div>
           {% endfor %}
