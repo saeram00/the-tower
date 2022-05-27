@@ -1,4 +1,17 @@
 {% extends 'blog/base.html' %}
 {% block content %}
         <h1>Perfil de {{ user.username }}</h1>
+        <div class="content-section">
+          <div class="media">
+            <img class="rounded-circle account-img" src="{{ user.profile.foto_perfil.url }}">
+            <div class="media-body">
+              <h2 class="account-heading">{{ user.username }}</h2>
+              <p class="text-secondary">{{ user.email }}</p>
+            </div>
+          </div>
+          <div class="container">
+            <a href="{% url 'Userupdate' user.pk %}"><button class="btn btn-outline-info">Editar perfil</button></a>
+            <a href="{% url 'Userdelete' user.pk %}"><button class="btn btn-outline-danger">Eliminar perfil</button></a>
+          </div>
+        </div>
 {% endblock content %}

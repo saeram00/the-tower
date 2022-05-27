@@ -2,11 +2,11 @@
 {% block content %}
         <h1>Usuarios Registrados</h1>
         <ul class="card">
-          {% for user in bloguser_list %}
-          <ul class="container col col-5">
-            <li>Nombre de usuario: {{ user.nombre_usuario }}</li>
-            <li>Correo electrónico: {{ user.email }}</li>
-            <li>Se unió el: {{ user.fecha_registro }}</li>
+          {% for b_user in profile_list %}
+          <ul class="container col col-5 mb-3 mt-1">
+            <li>Nombre de usuario: {{ b_user.usuario.username }}</li>
+            <li>Correo electrónico: {{ b_user.email }}</li>
+            <li>Se unió el: {{ b_user.fecha_registro }}</li>
           </ul>
           {% endfor %}
         </ul>

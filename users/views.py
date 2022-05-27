@@ -4,10 +4,10 @@ from django.views.generic.detail import DetailView
 from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ObjectDoesNotExist
 
 from .forms import BlogUserForm
@@ -23,9 +23,9 @@ def register(request):
             username = info.get('username')
             email = info.get('email')
             new_user = Profile(
-                nombre_usuario=username,
-                email=email,
-                usuario=User.objects.get(username=username)
+                usuario=User.objects.get(username=username),
+                nombre_usuario=User.objects.get(username=username),
+                email=User.objects.get(email=email),
             )
             new_user.save()
             messages.success(request, f"Usuario {username} creado con éxito.")
@@ -70,13 +70,50 @@ class UserList(LoginRequiredMixin, ListView):
     template_name = 'users/user_list.html'
     extra_context = {
         'title': "Lista de usuarios",
-        'blog_users': Profile.objects.all(),
     }
 
 class UserDetail(LoginRequiredMixin, DetailView):
 
     model = Profile
-    template_name = 'users/detail.html'
+    template_name = 'users/profile.html'
     extra_context = {
         'title': "Detalle",
     }  
+
+class UserUpdate(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+
+    model = Profile
+    template_name = 'users/user_update.html'
+    success_url = f'/usuarios/listado/'
+    fields = (
+        'nombre_usuario',
+        'email',
+        # f'{Profile.usuario.username}',
+        # f'{Profile.usuario.email}',
+        'foto_perfil',
+    )
+    success_message = "Perfil editado con éxito."
+    extra_context = {
+        'title': "Editar usuario",
+    }
+
+    def test_func(self):
+        return self.request.user.is_authenticated and (
+            self.request.user.is_staff or self.request.user.id == self.request.user.profile.id
+        )
+
+class UserDelete(UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+
+    model = User
+    template_name = 'users/user_delete.html'
+    success_url = '/blog/'
+    success_message = "Usuario eliminado con éxito."
+    extra_context = {
+        'title': "Eliminar usuario",
+    }
+
+    def test_func(self):
+        return self.request.user.is_authenticated and (
+            self.request.user.is_staff or self.request.user.id == self.request.user.profile.id
+        )
+
