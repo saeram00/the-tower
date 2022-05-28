@@ -33,7 +33,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuario: {{ user }}</a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Crear Post</a></li>
+                <li><a class="dropdown-item" href="{% url 'Post-New' %}">Crear Post</a></li>
                 <li><a class="dropdown-item" href="#">Tus Post</a></li>
                 <li><a class="dropdown-item" href="{% url 'Userlist' %}">Usuarios</a></li>
                 <li><a class="dropdown-item" href="#">Chat</a></li>

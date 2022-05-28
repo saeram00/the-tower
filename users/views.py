@@ -1,14 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic.detail import DetailView
 from django.views.generic import ListView, TemplateView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 
-from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.core.exceptions import ObjectDoesNotExist
 
 from .forms import BlogUserForm, UserUpdateForm, ProfileUpdateForm
 from .models import Profile
