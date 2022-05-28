@@ -5,7 +5,7 @@
           {% for b_user in profile_list %}
           <ul class="container col col-5 mb-3 mt-1">
             <li>Nombre de usuario: {{ b_user.usuario.username }}</li>
-            <li>Correo electrónico: {{ b_user.email }}</li>
+            <li>Correo electrónico: {{ b_user.usuario.email }}</li>
             <li>Se unió el: {{ b_user.fecha_registro }}</li>
           </ul>
           {% endfor %}

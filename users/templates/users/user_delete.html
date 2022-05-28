@@ -10,9 +10,9 @@
               {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-              <button class="btn btn-outline-info" type="submit">Sí, eliminar</button>
+              <button class="btn btn-outline-danger" type="submit">Sí, eliminar</button>
             </div>
           </form>
-          <a href="{% url 'Userdetail' user.pk %}"><button class="btn btn-outline-danger mt-2">Cancelar</button></a>
+          <a href="{% url 'Userdetail' user.pk %}"><button class="btn btn-outline-info mt-2">Cancelar</button></a>
         </div>
 {% endblock content %}

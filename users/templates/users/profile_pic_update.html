@@ -1,16 +1,16 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-        <h1>Editando perfil: {{ user.username }}</h1>
+        <h1>Editando foto perfil de: {{ user.username }}</h1>
         <div class="container container-md mb-5 col col-5">
-          <form action="" method="POST">
+          <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
-              <legend class="border-bottom mb-4">Nombre de usuario y email:</legend>
+              <legend class="border-bottom mb-4">Foto de perfil:</legend>
               {{ form|crispy }}
             </fieldset>
             <div class="form-group pb-2">
-              <button class="btn btn-outline-info" type="submit" name="save_user">Confirmar</button>
+              <button class="btn btn-outline-info" type="submit" name="save_prof_pic">Confirmar</button>
             </div>
           </form>
           <a href="{% url 'Userdetail' user.pk %}"><button class="btn btn-outline-danger mt-2">Cancelar</button></a>

@@ -10,7 +10,8 @@
             </div>
           </div>
           <div class="container">
-            <a href="{% url 'Userupdate' user.pk %}"><button class="btn btn-outline-info">Editar perfil</button></a>
+            <a href="{% url 'Userupdate' user.pk %}"><button class="btn btn-outline-info">Editar datos perfil</button></a>
+            <a href="{% url 'Photoupdate' user.pk %}"><button class="btn btn-outline-info">Editar foto perfil</button></a>
             <a href="{% url 'Userdelete' user.pk %}"><button class="btn btn-outline-danger">Eliminar perfil</button></a>
           </div>
         </div>

@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from PIL import Image
 
 
 class Profile(models.Model):
@@ -12,8 +13,16 @@ class Profile(models.Model):
     foto_perfil = models.ImageField(default='default.jpg',
                                     upload_to='profile-pics')
 
+    def save(self):
+        super().save()
+        prof_pic = Image.open(self.foto_perfil.path)
+        if prof_pic.height > 250 or prof_pic.width > 250:
+            output_size = (250, 250)
+            prof_pic.thumbnail(output_size)
+            prof_pic.save(self.foto_perfil.path)
+
     def __str__(self):
         return f"""
-{self.nombre_usuario}
+{self.usuario.username}
 Creado el: {self.fecha_registro.strftime('%d-%m-%Y %H:%M:%S')}
 """
