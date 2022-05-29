@@ -97,7 +97,7 @@ class UserUpdate(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     def test_func(self):
         return self.request.user.is_authenticated and (
             self.request.user.is_staff
-            or self.request.user.id == self.request.user.profile.id
+            or self.request.user.id is self.kwargs['pk']
         )
 
 class ProfilePicUpdate(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
@@ -115,7 +115,7 @@ class ProfilePicUpdate(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     def test_func(self):
         return self.request.user.is_authenticated and (
             self.request.user.is_staff
-            or self.request.user.id == self.request.user.profile.id
+            or self.request.user.id is self.kwargs['pk']
         )
 
 class UserDelete(UserPassesTestMixin, SuccessMessageMixin, DeleteView):
@@ -131,6 +131,6 @@ class UserDelete(UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     def test_func(self):
         return self.request.user.is_authenticated and (
             self.request.user.is_staff
-            or self.request.user.id == self.request.user.profile.id
+            or self.request.user.id is self.kwargs['pk']
         )
 
