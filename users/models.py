@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 from PIL import Image
 
 
@@ -21,8 +22,12 @@ class Profile(models.Model):
             prof_pic.thumbnail(output_size)
             prof_pic.save(self.foto_perfil.path)
 
+    def get_absolute_url(self):
+        return reverse('Userdetail', kwargs={'pk': self.pk})
+
     def __str__(self):
         return f"""
 {self.usuario.username}
 Creado el: {self.fecha_registro.strftime('%d-%m-%Y %H:%M:%S')}
 """
+

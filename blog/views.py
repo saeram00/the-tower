@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -10,9 +10,11 @@ from .forms import PostForm
 from .models import Post
 
 
-class BlogIndex(TemplateView):
+class BlogIndex(ListView):
 
+    model = Post
     template_name = 'blog/blog-index.html'
+    ordering = ('-date_posted',)
     extra_context = {
         'title': "Inicio",
     }
@@ -29,7 +31,7 @@ class PostList(ListView):
 class PostDetail(DetailView):
 
     model = Post
-    template_name = 'blog/blog-detail.html'
+    template_name = 'blog/post_detail.html'
     extra_context = {
         'title': "Post",
     }
@@ -38,7 +40,6 @@ class PostCreate(UserPassesTestMixin, SuccessMessageMixin, CreateView):
 
     model = Post
     template_name = 'blog/post_create.html'
-    success_url = '/entradas/'
     fields = [
         'title',
         'topic',
@@ -49,6 +50,10 @@ class PostCreate(UserPassesTestMixin, SuccessMessageMixin, CreateView):
         'title': "Crear Post",
     }
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
     def test_func(self):
         return self.request.user.is_authenticated and (
             self.request.user.is_staff
@@ -58,8 +63,7 @@ class PostCreate(UserPassesTestMixin, SuccessMessageMixin, CreateView):
 class PostUpdate(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
 
     model = Post
-    template_name = "blog/post_edit.html"
-    success_url = '/entradas/'
+    template_name = "blog/post_update.html"
     fields = [
         'title',
         'topic',

@@ -4,9 +4,9 @@
         <ul class="card">
           {% for post in post_list %}
           <ul class="container col col-5 mb-3 mt-1">
-            <li>Título: {{ post.title }}</li>
-            <li>Autor: {{ post.author }}</li>
-            <li>Fecha: {{ post.date_posted }}</li>
+            <li><h3>Título: <a href="{% url 'Post-Detail' post.id %}">{{ post.title }}</a></h3></li>
+            <li><p class="mt-2 mb-1">Autor: <a href="{% url 'Userdetail' post.author.pk %}" target="_blank">{{ post.author }}</a></p></li>
+            <li><p class="text-secondary mb-3">Fecha: {{ post.date_posted }}</p></li>
           </ul>
           {% endfor %}
         </ul>

@@ -64,7 +64,7 @@ class UserLogout(LoginRequiredMixin, LogoutView):
         'title': "Logout",
     }
 
-class UserList(LoginRequiredMixin, ListView):
+class UserList(ListView):
 
     model = Profile
     template_name = 'users/user_list.html'
@@ -72,7 +72,7 @@ class UserList(LoginRequiredMixin, ListView):
         'title': "Lista de usuarios",
     }
 
-class UserDetail(LoginRequiredMixin, DetailView):
+class UserDetail(DetailView):
 
     model = Profile
     template_name = 'users/profile.html'
@@ -84,7 +84,7 @@ class UserUpdate(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
 
     model = User
     template_name = 'users/user_update.html'
-    success_url = f'/usuarios/listado/'
+    success_url = '/usuarios/listado/'
     fields = (
         'username',
         'email',
@@ -104,7 +104,6 @@ class ProfilePicUpdate(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
 
     model = Profile
     template_name = 'users/profile_pic_update.html'
-    success_url = f'/usuarios/listado/'
     fields = (
         'foto_perfil',
     )

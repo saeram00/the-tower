@@ -1,18 +1,24 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-        <h1>Perfil de {{ user.username }}</h1>
+        <h1>Perfil de {{ object.usuario.username }}</h1>
         <div class="content-section">
           <div class="media">
-            <img class="rounded-circle account-img" src="{{ user.profile.foto_perfil.url }}">
+            <a href="{{ object.foto_perfil.url }}" target="_blank">
+              <img class="rounded-circle account-img" src="{{ object.foto_perfil.url }}">
+            </a>
             <div class="media-body">
-              <h2 class="account-heading">{{ user.username }}</h2>
-              <p class="text-secondary">{{ user.email }}</p>
+              <h2 class="account-heading">{{ object.usuario.username }}</h2>
+              <p class="text-secondary">{{ object.usuario.email }}</p>
             </div>
           </div>
-          <div class="container">
-            <a href="{% url 'Userupdate' user.pk %}"><button class="btn btn-outline-info">Editar datos perfil</button></a>
-            <a href="{% url 'Photoupdate' user.pk %}"><button class="btn btn-outline-info">Editar foto perfil</button></a>
-            <a href="{% url 'Userdelete' user.pk %}"><button class="btn btn-outline-danger">Eliminar perfil</button></a>
-          </div>
+          {% if user.is_authenticated %}
+            {% if user.is_staff or user.pk == object.pk %}
+            <div class="container">
+              <a href="{% url 'Userupdate' user.pk %}"><button class="btn btn-outline-info">Editar datos perfil</button></a>
+              <a href="{% url 'Photoupdate' user.pk %}"><button class="btn btn-outline-info">Editar foto perfil</button></a>
+              <a href="{% url 'Userdelete' user.pk %}"><button class="btn btn-outline-danger">Eliminar perfil</button></a>
+            </div>
+            {% endif %}
+          {% endif %}
         </div>
 {% endblock content %}

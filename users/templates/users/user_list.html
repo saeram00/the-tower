@@ -3,10 +3,15 @@
         <h1>Usuarios Registrados</h1>
         <ul class="card">
           {% for b_user in profile_list %}
+          <div class="media">
+            <a href="{{ b_user.foto_perfil.url }}" target="_blank">
+              <img class="rounded-circle account-img" style="height: 55px; width: 55px" src="{{ b_user.foto_perfil.url }}">
+            </a>
+          </div>
           <ul class="container col col-5 mb-3 mt-1">
-            <li>Nombre de usuario: {{ b_user.usuario.username }}</li>
-            <li>Correo electrónico: {{ b_user.usuario.email }}</li>
-            <li>Se unió el: {{ b_user.fecha_registro }}</li>
+            <li><h4>Usuario: <a href="{% url 'Userdetail' b_user.pk %}">{{ b_user.usuario.username }}</a></h4></li>
+            <li><h6>Email: {{ b_user.usuario.email }}</h6></li>
+            <li><p class="text-secondary">Se unió el: {{ b_user.fecha_registro }}</p></li>
           </ul>
           {% endfor %}
         </ul>
