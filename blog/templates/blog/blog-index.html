@@ -9,7 +9,7 @@
             </a>
           </div>
           <ul class="container col col-5 mb-3 mt-1">
-            <li><h2>Título: <a href="{% url 'Post-Detail' post.id %}">{{ post.title }}</a></h2></li>
+            <li><h2>Título: <a href="{% url 'Post-Detail' post.pk %}">{{ post.title }}</a></h2></li>
             <li><h4 class="mt-2 mb-1">Autor: <a href="{% url 'Userdetail' post.author.pk %}" target="_blank">{{ post.author }}</a></h4></li>
             <li><h5 class="mt-2 mb-1">Temas: {{ post.topic }}</h5></li>
             <li><p class="text-secondary mb-3">Fecha: {{ post.date_posted }}</p></li>

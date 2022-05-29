@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+        <h1>Buscar post:</h1>
+        <div class="container container-md mb-5 col col-5">
+          <form action="" method="GET">
+            <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Escriba parte del título del post que desea buscar:</legend>
+              <h3><input type="text" name="titulo" placeholder="Título"></h3>
+            </fieldset>
+            <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Buscar</button>
+            </div>
+          </form>
+          <div class="pt-3">
+            <a href="{% url 'Post-List' %}"><button class="btn btn-outline-danger">Cancelar</button></a>
+          </div>
+        </div>
+{% endblock content %}

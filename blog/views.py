@@ -28,6 +28,30 @@ class PostList(ListView):
         'title': "Listado de posts",
     }
 
+class UserPostList(ListView):
+
+    model = Post
+    template_name = 'blog/user-post_list.html'
+    ordering = ('-date_posted',)
+    extra_context = {
+        'title': "Tus Posts",
+    }
+
+def search_posts(request):
+    if request.GET.get('titulo'):
+        found_title = request.GET.get('titulo')
+        filtered_posts = Post.objects.filter(title__icontains=found_title)
+        return render(
+            request,
+            'blog/filter-post_list.html',
+            {'title': "Resultados", 'results': filtered_posts}
+        )
+        
+    search_context = {
+        'title': "Buscar posts",
+    }
+    return render(request, 'blog/search-author.html', search_context)
+
 class PostDetail(DetailView):
 
     model = Post

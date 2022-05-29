@@ -1,13 +1,15 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-        <h1>Listado de entradas</h1>
+        <h1>Tus Posts</h1>
         <ul class="card">
           {% for post in post_list %}
+          {% if post.author.pk is user.pk %}
           <ul class="container col col-5 mb-3 mt-1">
             <li><h3>Título: <a href="{% url 'Post-Detail' post.pk %}">{{ post.title }}</a></h3></li>
             <li><p class="mt-2 mb-1">Autor: <a href="{% url 'Userdetail' post.author.pk %}" target="_blank">{{ post.author }}</a></p></li>
             <li><p class="text-secondary mb-3">Fecha: {{ post.date_posted }}</p></li>
           </ul>
+          {% endif %}
           {% endfor %}
         </ul>
 {% endblock content %}
