@@ -4,13 +4,15 @@
         <div class="content-section">
           <div class="media-body">
             <h4 class="account-heading mb-4">Creado por: <a href="{% url 'Userdetail' post.author.pk %}" target="_blank">{{ object.author }}</a></h4>
-            <a href="{{ post.author.profile.foto_perfil.url }}" target="_blank">
-              <img class="rounded-circle account-img" style="height: 55px; width: 55px" src="{{ post.author.profile.foto_perfil.url }}">
+            <a href="{{ post.foto_post.url }}" target="_blank">
+              <img class="rounded account-img" style="height: 150px; width: 150px" src="{{ post.foto_post.url }}">
             </a>
             <h5 class="text-secondary mt-3 mb-2">Temas: {{ object.topic }}</h5>
+            <p class="text-secondary mb-2">Fecha: {{ object.date_posted }}</p>
             {% if user.is_authenticated %}
               {% if user.is_staff or user.pk is post.author.pk %}
               <a href="{% url 'Post-Update' post.pk %}"><button class="btn btn-outline-info">Editar Post</button></a>
+              <a href="{% url 'Post-Pic-Update' post.pk %}"><button class="btn btn-outline-info">Editar Imagen</button></a>
               <a href="{% url 'Post-Delete' post.pk %}"><button class="btn btn-outline-danger">Eliminar Post</button></a>
               {% endif %}
             {% endif %}

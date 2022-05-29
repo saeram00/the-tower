@@ -9,7 +9,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 
-from .forms import BlogUserForm, UserUpdateForm, ProfileUpdateForm
+from .forms import BlogUserForm
 from .models import Profile
 
 

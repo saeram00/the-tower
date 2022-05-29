@@ -64,11 +64,12 @@ class PostCreate(UserPassesTestMixin, SuccessMessageMixin, CreateView):
 
     model = Post
     template_name = 'blog/post_create.html'
-    fields = [
+    fields = (
         'title',
         'topic',
+        'foto_post',
         'content'
-    ]
+    )
     success_message = "Post publicado con éxito."
     extra_context = {
         'title': "Crear Post",
@@ -88,11 +89,29 @@ class PostUpdate(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
 
     model = Post
     template_name = "blog/post_update.html"
-    fields = [
+    fields = (
         'title',
         'topic',
         'content'
-    ]
+    )
+    success_message = "Post editado con éxito."
+    extra_context = {
+        'title': "Editar Post",
+    }
+
+    def test_func(self):
+        return self.request.user.is_authenticated and (
+            self.request.user.is_staff
+            or self.request.user.id == self.request.user.profile.id
+        )
+
+class PostPicUpdate(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+
+    model = Post
+    template_name = "blog/post_update.html"
+    fields = (
+        'foto_post',
+    )
     success_message = "Post editado con éxito."
     extra_context = {
         'title': "Editar Post",
@@ -108,7 +127,7 @@ class PostDelete(UserPassesTestMixin, SuccessMessageMixin, DeleteView):
 
     model = Post
     template_name = "blog/post_delete.html"
-    success_url = '/entradas/'
+    success_url = '/blog/entradas/'
     success_message = "Post eliminado con éxito."
     extra_context = {
         'title': "Borrar Post",

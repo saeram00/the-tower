@@ -4,8 +4,8 @@
         <ul class="card">
           {% for post in post_list %}
           <div class="media">
-            <a href="{{ post.author.profile.foto_perfil.url }}" target="_blank">
-              <img class="rounded-circle account-img" style="height: 80px; width: 80px" src="{{ post.author.profile.foto_perfil.url }}">
+            <a href="{{ post.foto_post.url }}" target="_blank">
+              <img class="rounded account-img" style="height: 100px; width: 100px" src="{{ post.foto_post.url }}">
             </a>
           </div>
           <ul class="container col col-5 mb-3 mt-1">
