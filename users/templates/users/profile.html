@@ -12,7 +12,7 @@
             </div>
           </div>
           {% if user.is_authenticated %}
-            {% if user.is_staff or user.pk == object.pk %}
+            {% if user.is_staff or user.pk is object.usuario.pk %}
             <div class="container">
               <a href="{% url 'Userupdate' user.pk %}"><button class="btn btn-outline-info">Editar datos perfil</button></a>
               <a href="{% url 'Photoupdate' user.pk %}"><button class="btn btn-outline-info">Editar foto perfil</button></a>

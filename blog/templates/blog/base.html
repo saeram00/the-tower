@@ -29,8 +29,8 @@
             {% if not user.is_authenticated %}
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Register'%}">Regístrate</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Login</a></li>
-            <!-- Dropdown should only be visible if user is logged in -->
             {% else %}
+            <!-- Dropdown should only be visible if user is logged in -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuario: {{ user }}</a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
