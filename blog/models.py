@@ -28,7 +28,7 @@ class Post(models.Model):
     
     def __str__(self):
         return f"""
-[{self.title}] posteado por {self.author.username}
+[ {self.title} ] posteado por {self.author.username}
 el {self.date_posted.strftime('%d-%m-%Y %H:%M:%S')}
 """
 

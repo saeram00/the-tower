@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <h1>Nuevo Mensaje:</h1>
+        <div class="container container-md mb-5 col col-5">
+          <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Llene los campos:</legend>
+              {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Enviar</button>
+            </div>
+          </form>
+          <div class="pt-3">
+            <a href="{% url 'Inbox' %}"><button class="btn btn-outline-danger">Cancelar</button></a>
+          </div>
+        </div>
+{% endblock content %}

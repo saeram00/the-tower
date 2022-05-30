@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+        <div class="content-section">
+          <div class="media-body">
+            <h4 class="account-heading mt-3 mb-2">Asunto: {{ object.asunto }}</h4>
+            <h5 class="text-secondary mb-2">De: <a href="{% url 'Userdetail' object.remitente.pk %}" target="_blank">{{ object.remitente }}</a></h5>
+            <p class="text-secondary mb-2">Fecha: {{ object.fecha_emision }}</p>
+            {% if user.is_authenticated %}
+              {% if user.is_staff or user.pk is object.remitente.pk %}
+              <a href="{% url 'Edit-Message' object.pk %}"><button class="btn btn-outline-info">Editar Mensaje</button></a>
+              <a href="{% url 'Del-Message' object.pk %}"><button class="btn btn-outline-danger">Eliminar Mensaje</button></a>
+              {% endif %}
+            {% endif %}
+          </div>
+          <div class="container">
+            <p class="text-center mt-2 mb-4">{{ object.contenido }}</p>
+          </div>
+        </div>
+{% endblock content %}

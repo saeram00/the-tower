@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+        <h1>Tus Mensajes</h1>
+        <a href="{% url 'New-Message' %}"><button class="btn btn-outline-info">Nuevo Mensaje</button></a>
+        <a href="{% url 'Search-Chat' %}"><button class="btn btn-outline-info">Buscar Mensaje</button></a>
+        <ul class="card">
+          {% for message in message_list %}
+          {% if message.remitente.pk is user.pk or message.destinatario == user.username %}
+          <ul class="container col col-5 mb-3 mt-1">
+            <li><h3>Asunto: <a href="{% url 'Chat-Detail' message.pk %}">{{ message.asunto }}</a></h3></li>
+            <li><p class="mt-2 mb-1">De: <a href="{% url 'Userdetail' message.remitente.pk %}" target="_blank">{{ message.remitente }}</a></p></li>
+            <li><p class="mt-2 mb-1">Para: {{ message.destinatario }}</p></li>
+            <li><p class="text-secondary mb-3">Fecha: {{ message.fecha_emision }}</p></li>
+          </ul>
+          {% endif %}
+          {% endfor %}
+        </ul>
+{% endblock content %}

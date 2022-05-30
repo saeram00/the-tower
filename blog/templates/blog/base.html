@@ -38,7 +38,7 @@
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{% url 'Post-New' %}">Crear Post</a></li>
                 <li><a class="dropdown-item" href="{% url 'UserPost-List' %}">Tus Post</a></li>
-                <li><a class="dropdown-item" href="#">Chat</a></li>
+                <li><a class="dropdown-item" href="{% url 'Inbox' %}">Chat</a></li>
                 <li><a class="dropdown-item" href="{% url 'Userdetail' user.pk %}">Perfil</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar Sesión</a></li>

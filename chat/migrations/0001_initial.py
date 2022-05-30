@@ -16,15 +16,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Post',
+            name='Message',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('topic', models.CharField(max_length=200)),
-                ('foto_post', models.ImageField(default='default-post.jpg', upload_to='post-pics')),
-                ('date_posted', models.DateTimeField(default=django.utils.timezone.now)),
-                ('content', models.TextField()),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('destinatario', models.CharField(max_length=60)),
+                ('fecha_emision', models.DateTimeField(default=django.utils.timezone.now)),
+                ('asunto', models.CharField(max_length=120)),
+                ('contenido', models.TextField()),
+                ('remitente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+        <h1>Buscar mensaje:</h1>
+        <div class="container container-md mb-5 col col-5">
+          <form action="" method="GET">
+            <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Escriba parte del asunto del mensaje que desea buscar:</legend>
+              <h3><input type="text" name="asunto" placeholder="Escriba aquí..."></h3>
+            </fieldset>
+            <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Buscar</button>
+            </div>
+          </form>
+          <div class="pt-3">
+            <a href="{% url 'Inbox' %}"><button class="btn btn-outline-danger">Cancelar</button></a>
+          </div>
+        </div>
+{% endblock content %}

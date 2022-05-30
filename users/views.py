@@ -20,11 +20,9 @@ def register(request):
             bloguser_form.save()
             info = bloguser_form.cleaned_data
             username = info.get('username')
-            email = info.get('email')
             new_user = Profile(
                 usuario=User.objects.get(username=username),
                 nombre_usuario=User.objects.get(username=username),
-                email=User.objects.get(email=email)
             )
             new_user.save()
             messages.success(request, f"Usuario {username} creado con éxito.")

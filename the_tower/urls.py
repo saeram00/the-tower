@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
     path('usuarios/', include('users.urls')),
+    path('chat/', include('chat.urls')),
     path('registro/', user_views.register, name='Register'),
     path('registro-exitoso', user_views.RegisterSuccess.as_view(), name='Reg-Success'),
     path('login/', user_views.UserLogin.as_view(), name='Login'),

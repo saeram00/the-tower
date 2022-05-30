@@ -9,7 +9,6 @@ class Profile(models.Model):
 
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     nombre_usuario = models.CharField(max_length=60)
-    email = models.EmailField()
     fecha_registro = models.DateTimeField(default=timezone.now)
     foto_perfil = models.ImageField(default='default.jpg',
                                     upload_to='profile-pics')
