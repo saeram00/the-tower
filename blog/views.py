@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -17,6 +17,13 @@ class BlogIndex(ListView):
     ordering = ('-date_posted',)
     extra_context = {
         'title': "Inicio",
+    }
+
+class AboutView(TemplateView):
+
+    template_name = 'blog/about.html'
+    extra_context = {
+        'title': "Acerca de"
     }
 
 class PostList(ListView):
@@ -108,7 +115,7 @@ class PostUpdate(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
 class PostPicUpdate(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
 
     model = Post
-    template_name = "blog/post_update.html"
+    template_name = "blog/post-pic_update.html"
     fields = (
         'foto_post',
     )
